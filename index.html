@@ -2,86 +2,150 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sync Developments</title>
 
 <style>
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', sans-serif;
     background: #0a0f1c;
     color: white;
+    overflow-x: hidden;
+}
+
+/* ANIMACIÓN ENTRADA */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeIn 1s forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* HERO */
 .hero {
     text-align: center;
-    padding: 80px 20px;
+    padding: 100px 20px;
     background: linear-gradient(180deg, #020617, #0a0f1c);
 }
 
 .hero img {
-    width: 180px;
+    width: 120px;
+    border-radius: 50%;
     margin-bottom: 20px;
+    animation: float 4s ease-in-out infinite;
+    box-shadow: 0 0 25px rgba(37, 99, 235, 0.6);
+}
+
+/* EFECTO FLOTANTE */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+    100% { transform: translateY(0px); }
 }
 
 .hero h1 {
-    font-size: 42px;
-    margin: 10px 0;
+    font-size: 50px;
 }
 
 .hero p {
     color: #94a3b8;
-    font-size: 18px;
 }
 
-/* BOTÓN */
+/* BOTÓN CON EFECTO */
 .btn {
     display: inline-block;
-    margin-top: 20px;
-    padding: 12px 25px;
-    background: #2563eb;
+    margin-top: 25px;
+    padding: 14px 30px;
+    background: linear-gradient(45deg, #2563eb, #3b82f6);
     color: white;
     text-decoration: none;
-    border-radius: 8px;
+    border-radius: 10px;
     font-weight: bold;
+    transition: 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::after {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 100%;
+    background: rgba(255,255,255,0.2);
+    top: 0;
+    left: 0;
+    transition: 0.4s;
+}
+
+.btn:hover::after {
+    width: 100%;
 }
 
 .btn:hover {
-    background: #1d4ed8;
+    transform: scale(1.05);
 }
 
 /* SECCIONES */
 .section {
-    padding: 50px 20px;
+    padding: 60px 20px;
     max-width: 1000px;
     margin: auto;
 }
 
+/* GRID */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+/* TARJETAS */
 .card {
-    background: #111827;
-    padding: 20px;
-    border-radius: 10px;
-    margin-top: 15px;
+    background: rgba(17, 24, 39, 0.8);
+    padding: 25px;
+    border-radius: 12px;
+    transition: 0.4s;
+    opacity: 0;
+    transform: translateY(40px);
+}
+
+/* HOVER TARJETAS */
+.card:hover {
+    transform: translateY(-10px) scale(1.02);
+    background: rgba(30, 41, 59, 0.9);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.5);
 }
 
 /* FOOTER */
 footer {
     text-align: center;
-    padding: 20px;
+    padding: 25px;
     background: #020617;
     color: #64748b;
+}
+
+/* EFECTO SCROLL */
+.show {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    transition: 0.8s ease;
 }
 </style>
 
 </head>
 <body>
 
-<div class="hero">
-    
-    <img src="logo.png" alt="Sync Developments Logo">
-
+<div class="hero fade-in">
+    <img src="logo.png" alt="Logo">
     <h1>Sync Developments</h1>
-    <p>💻 Desarrollo | 🛡️ Staff | 🚀 Soluciones para servidores</p>
+    <p>💻 Desarrollo | 🛡️ Staff | 🚀 Soluciones profesionales</p>
 
     <a class="btn" href="https://discord.gg/X3tPxqQPHY" target="_blank">
         Unirse a nuestro Discord
@@ -89,43 +153,52 @@ footer {
 </div>
 
 <div class="section">
-    <h2>👨‍💻 Sobre el equipo</h2>
+    <h2 class="fade-in">👨‍💻 Sobre el equipo</h2>
     <div class="card">
         <p>
             Sync Developments es un equipo especializado en desarrollo y gestión de servidores.
-            Nos enfocamos en ofrecer sistemas, automatización y soporte profesional.
         </p>
     </div>
 </div>
 
 <div class="section">
-    <h2>🚀 Experiencia</h2>
+    <h2 class="fade-in">🚀 Experiencia</h2>
 
-    <div class="card">
-        <h3>Developer</h3>
-        <p>Creación de sistemas, bots y herramientas para servidores.</p>
+    <div class="grid">
+        <div class="card">Developer</div>
+        <div class="card">Staff</div>
     </div>
-
-    <div class="card">
-        <h3>Staff</h3>
-        <p>Moderación, gestión de usuarios y organización de comunidades.</p>
-    </div>
-
 </div>
 
 <div class="section">
-    <h2>⚡ Especialidades</h2>
+    <h2 class="fade-in">⚡ Especialidades</h2>
+
     <div class="card">
-        <p>✔ Gestión de servidores</p>
-        <p>✔ Desarrollo web básico</p>
-        <p>✔ Sistemas para Discord</p>
-        <p>✔ Organización de equipos</p>
+        ✔ Gestión de servidores<br>
+        ✔ Desarrollo web<br>
+        ✔ Bots de Discord<br>
+        ✔ Organización de equipos
     </div>
 </div>
 
 <footer>
     © 2026 Sync Developments
 </footer>
+
+<script>
+// Animación al hacer scroll
+const elements = document.querySelectorAll('.card, .fade-in');
+
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('show');
+        }
+    });
+});
+
+elements.forEach(el => observer.observe(el));
+</script>
 
 </body>
 </html>
